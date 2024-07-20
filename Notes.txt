@@ -1,0 +1,5 @@
+extension - .html, .css, .pdf, .js, 
+<img class="lazy" data-src="path/to/image.jpg" alt="Description">
+
+chelsea.ns.cloudflare.com
+yew.ns.cloudflare.com
