@@ -3,57 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rajesh Kumar Awasthi - Portfolio</title>
+    <title>Rajesh Awasthi - Web Developer</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Rajesh Kumar Awasthi</h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
 
-    <section id="home" class="section">
-        <div class="container">
-            <h2>Welcome to My Portfolio</h2>
-            <p>I am a web developer passionate about creating responsive and user-friendly websites.</p>
-        </div>
-    </section>
+<header>
+    <div class="container">
+        <h1>Rajesh Awasthi</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="https://www.linkedin.com/in/your-linkedin-id" target="_blank">LinkedIn</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Insert your about information here...</p>
-        </div>
-    </section>
+<section id="home" class="hero">
+    <div class="container">
+        <h2>Welcome to my Website</h2>
+        <p>I am a passionate web developer dedicated to creating responsive and user-friendly websites.</p>
+        <a href="#articles" class="btn">Explore Articles</a>
+    </div>
+</section>
 
-    <section id="portfolio" class="section">
-        <div class="container">
-            <h2>Portfolio</h2>
-            <p>Showcase your projects here...</p>
-        </div>
-    </section>
+<section id="about" class="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p>I have been working as a web developer for [number] years, specializing in [technologies or skills]. My goal is to deliver high-quality websites that meet client needs and exceed expectations.</p>
+    </div>
+</section>
 
-    <section id="contact" class="section">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <p>Reach out to me...</p>
-        </div>
-    </section>
+<section id="contact" class="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <p>Feel free to reach out to discuss your web development projects. You can contact me via the form below or directly at [your email address].</p>
+        <form action="send_email.php" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </div>
+</section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Rajesh Kumar Awasthi. All rights reserved.</p>
+<section id="articles" class="articles">
+    <div class="container">
+        <h2>Articles</h2>
+        <div class="article">
+            <h3>Article Title 1</h3>
+            <p>Article content goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </div>
-    </footer>
-    <script src="scripts.js"></script>
+        <div class="article">
+            <h3>Article Title 2</h3>
+            <p>Another article content. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 Rajesh Awasthi - All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
