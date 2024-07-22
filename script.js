@@ -1,83 +1,52 @@
-document.addEventListener("DOMContentLoaded", function() {
-    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+// Smooth scrolling for navigation links
+document.querySelectorAll('nav ul li a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
 
-    if ("IntersectionObserver" in window) {
-        let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    let lazyImage = entry.target;
-                    lazyImage.src = lazyImage.dataset.src;
-                    lazyImage.classList.remove("lazy");
-                    lazyImageObserver.unobserve(lazyImage);
-                }
-            });
-        });
-
-        lazyImages.forEach(function(lazyImage) {
-            lazyImageObserver.observe(lazyImage);
-        });
-    } else {
-        // Fallback for older browsers
-        lazyImages.forEach(function(lazyImage) {
-            lazyImage.src = lazyImage.dataset.src;
-            lazyImage.classList.remove("lazy");
-        });
-    }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    var scrollLinks = document.querySelectorAll('a[href^="#"]');
-    
-    scrollLinks.forEach(function(scrollLink) {
-        scrollLink.addEventListener("click", function(e) {
-            e.preventDefault();
-
-            var targetId = this.getAttribute("href").substring(1);
-            var targetElement = document.getElementById(targetId);
-
-            if (targetElement) {
-                var offsetTop = targetElement.getBoundingClientRect().top + window.scrollY;
-                window.scroll({
-                    top: offsetTop,
-                    behavior: "smooth"
-                });
-            }
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({
+            behavior: 'smooth'
         });
     });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    var form = document.getElementById("contactForm");
+// Form submission handling with basic validation
+const form = document.querySelector('form');
 
-    form.addEventListener("submit", function(e) {
-        var nameField = document.getElementById("name");
-        var emailField = document.getElementById("email");
-        var messageField = document.getElementById("message");
-        var errorMessages = [];
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
 
-        if (nameField.value.trim() === "") {
-            errorMessages.push("Please enter your name.");
-        }
+    const name = form.querySelector('#name').value.trim();
+    const email = form.querySelector('#email').value.trim();
+    const message = form.querySelector('#message').value.trim();
 
-        if (emailField.value.trim() === "") {
-            errorMessages.push("Please enter your email address.");
-        } else if (!isValidEmail(emailField.value.trim())) {
-            errorMessages.push("Please enter a valid email address.");
-        }
-
-        if (messageField.value.trim() === "") {
-            errorMessages.push("Please enter your message.");
-        }
-
-        if (errorMessages.length > 0) {
-            e.preventDefault();
-            alert(errorMessages.join("\n"));
-        }
-    });
-
-    function isValidEmail(email) {
-        // Basic email validation regex
-        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    if (name === '' || email === '' || message === '') {
+        alert('Please fill in all fields.');
+        return;
     }
+
+    // You can replace this with actual form submission code
+    // For example, using fetch API to send form data to backend
+    // Replace "send_email.php" with your actual backend endpoint
+    fetch('send_email.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, message }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        alert('Message sent successfully!');
+        form.reset(); // Clear form fields after successful submission
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was an issue sending your message. Please try again later.');
+    });
 });
